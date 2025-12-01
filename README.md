@@ -40,7 +40,7 @@ Transform natural language into powerful Linux commands instantly! No more memor
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/ai-terminal-assistant.git
+   git clone https://github.com/krishi-shah/ai-terminal-assistant.git
    cd ai-terminal-assistant
    ```
 

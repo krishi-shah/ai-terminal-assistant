@@ -49,23 +49,50 @@ Transform natural language into powerful Linux commands instantly! No more memor
    pip install -r requirements.txt
    ```
 
-3. **Get your FREE API key**
-   - Visit [https://console.anthropic.com/](https://console.anthropic.com/)
-   - Sign up (free tier includes $5 credits - enough for thousands of commands!)
-   - Navigate to API Keys and create a new key
+### API Key Options
 
-4. **Configure your API key**
-   
-   **Option A - Environment Variable (Recommended)**
-   ```bash
-   export ANTHROPIC_API_KEY='your-api-key-here'
-   ```
-   
-   **Option B - Permanent (add to ~/.bashrc or ~/.zshrc)**
-   ```bash
-   echo 'export ANTHROPIC_API_KEY="your-api-key-here"' >> ~/.bashrc
-   source ~/.bashrc
-   ```
+This tool supports **two AI providers** - use whichever you prefer:
+
+**Option 1: Anthropic Claude (Recommended)**
+- More accurate for Linux commands
+- Better at following JSON format
+- Cost: ~$0.001-0.003 per command
+- Get key: [https://console.anthropic.com/](https://console.anthropic.com/)
+```bash
+export ANTHROPIC_API_KEY='your-claude-key'
+```
+
+**Option 2: OpenAI GPT-4**
+- Widely available
+- Good alternative
+- Cost: ~$0.003-0.01 per command (GPT-4)
+- Get key: [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+```bash
+export OPENAI_API_KEY='your-openai-key'
+```
+
+**Note:** If both keys are set, Claude will be used by default. To use GPT-3.5-turbo (cheaper), edit line 286 in `ai-terminal.py` and change `model="gpt-4"` to `model="gpt-3.5-turbo"`.
+```
+
+---
+
+### 3. **.env.example** - UPDATE THIS
+
+**Old version:**
+```
+ANTHROPIC_API_KEY=your_api_key_here
+```
+
+**New version:**
+```
+# AI Provider API Keys (set at least one)
+# Option 1: Anthropic Claude (Recommended)
+ANTHROPIC_API_KEY=your_claude_key_here
+
+# Option 2: OpenAI GPT
+OPENAI_API_KEY=your_openai_key_here
+
+# Note: If both are set, Claude will be used by default
    
    **Option C - .env file**
    ```bash

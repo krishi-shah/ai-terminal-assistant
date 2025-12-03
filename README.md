@@ -1,35 +1,35 @@
-# 🤖 AI Linux Terminal Assistant
+# AI Linux Terminal Assistant
 
 Transform natural language into powerful Linux commands instantly! No more memorizing complex syntax or searching through man pages.
 
-## ✨ Features
+## Features
 
-- 🗣️ **Natural Language**: Describe what you want in plain English
-- ⚡ **Instant Commands**: AI generates optimized Linux commands
-- 🛡️ **Safety First**: Color-coded warnings for dangerous operations
-- 📝 **Learn as You Go**: Every command comes with detailed explanations
-- 🎨 **Beautiful Interface**: Clean, terminal-inspired design
-- 🔄 **Multiple Modes**: Interactive, direct command, or auto-execute
+-  **Natural Language**: Describe what you want in plain English
+-  **Instant Commands**: AI generates optimized Linux commands
+-  **Safety First**: Color-coded warnings for dangerous operations
+-  **Learn as You Go**: Every command comes with detailed explanations
+-  **Beautiful Interface**: Clean, terminal-inspired design
+-  **Multiple Modes**: Interactive, direct command, or auto-execute
 
-## 🎥 Demo
+##  Demo
 
 ```bash
 ➜ What would you like to do? find all video files larger than 500MB in my Videos folder
 
-🤖 Processing: find all video files larger than 500MB in my Videos folder
-⏳ Generating command...
+ Processing: find all video files larger than 500MB in my Videos folder
+ Generating command...
 
 ╔═══ Generated Command ═══╗
   find ~/Videos -type f \( -iname "*.mp4" -o -iname "*.avi" -o -iname "*.mkv" \) -size +500M
 ╚═════════════════════════╝
 
-📝 Explanation:
+ Explanation:
   Searches the Videos directory for MP4, AVI, and MKV files larger than 500MB
 
-✅ Safety Level: SAFE
+ Safety Level: SAFE
 ```
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 
@@ -122,7 +122,7 @@ sudo chmod +x /usr/local/bin/ai-terminal
 ai-terminal "find large files"
 ```
 
-## 📖 Usage
+##  Usage
 
 ### Interactive Mode (Recommended for Beginners)
 
@@ -154,9 +154,9 @@ Automatically run safe commands without confirmation:
 ./ai-terminal.py --auto "list directory contents sorted by size"
 ```
 
-⚠️ **Note**: Auto-execute only works for commands marked as "safe". Dangerous commands still require confirmation.
+ **Note**: Auto-execute only works for commands marked as "safe". Dangerous commands still require confirmation.
 
-## 🎯 Example Commands
+## Example Commands
 
 | What You Say | Generated Command |
 |--------------|-------------------|
@@ -166,15 +166,15 @@ Automatically run safe commands without confirmation:
 | "Find all Python files containing 'import pandas'" | `grep -r "import pandas" --include="*.py"` |
 | "Compress all PDFs in Documents" | `tar -czf pdfs.tar.gz ~/Documents/*.pdf` |
 
-## 🛡️ Safety Features
+## Safety Features
 
 The AI Assistant includes multiple safety mechanisms:
 
 ### Safety Levels
 
-- 🟢 **SAFE**: Read-only operations, no system changes
-- 🟡 **CAUTION**: Requires attention, might modify files
-- 🔴 **DANGEROUS**: Could cause data loss or system changes
+-  **SAFE**: Read-only operations, no system changes
+-  **CAUTION**: Requires attention, might modify files
+-  **DANGEROUS**: Could cause data loss or system changes
 
 ### Execution Options
 
@@ -186,12 +186,12 @@ When a command is generated, you can:
 
 ### Built-in Protections
 
-- ✅ Timeout protection (5 minutes max)
-- ✅ Detailed warnings for risky operations
-- ✅ Command explanations before execution
-- ✅ Error capture and display
+-  Timeout protection (5 minutes max)
+-  Detailed warnings for risky operations
+-  Command explanations before execution
+-  Error capture and display
 
-## 💰 Pricing & Cost
+##  Pricing & Cost
 
 ### API Costs (as of 2025)
 
@@ -205,9 +205,9 @@ When a command is generated, you can:
 - Daily use (10 commands/day) for a month: ~$0.30-0.90
 - Power user (50 commands/day) for a month: ~$1.50-4.50
 
-**Most users stay within the free tier!** 🎉
+**Most users stay within the free tier!** 
 
-## 🔧 Configuration
+##  Configuration
 
 ### Environment Variables
 
@@ -221,7 +221,7 @@ Edit the script to customize:
 - Default execution behavior
 - Color scheme
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Here's how you can help:
 
@@ -240,7 +240,7 @@ Contributions are welcome! Here's how you can help:
 - Improve error handling
 - Add unit tests
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### "ANTHROPIC_API_KEY not set" Error
 
@@ -270,22 +270,22 @@ Install clipboard utilities:
 - **Fedora**: `sudo dnf install xclip`
 - **macOS**: Built-in (pbcopy)
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Powered by [Anthropic's Claude AI](https://www.anthropic.com/)
 - Inspired by the need to make Linux more accessible
-- Built with ❤️ for the open-source community
+- Built with for the open-source community
 
-## 📧 Contact
+## Contact
 
 - **Issues**: [GitHub Issues](https://github.com/yourusername/ai-terminal-assistant/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/yourusername/ai-terminal-assistant/discussions)
 
-## ⭐ Show Your Support
+## Show Your Support
 
 If this project helps you, please give it a ⭐ on GitHub!
 

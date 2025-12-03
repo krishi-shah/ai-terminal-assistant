@@ -1,8 +1,8 @@
-# 📚 AI Terminal Assistant - Example Commands
+# AI Terminal Assistant - Example Commands
 
 This document contains real-world examples of what you can do with the AI Terminal Assistant.
 
-## 🗂️ File Management
+## File Management
 
 ### Find Files
 
@@ -44,7 +44,7 @@ find ~/Downloads -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.gif" -
 tar -czf ~/backup-configs-$(date +%Y%m%d).tar.gz ~/.bashrc ~/.zshrc ~/.vimrc ~/.gitconfig
 ```
 
-## 📊 System Information
+## System Information
 
 **Natural Language:**
 > "Show me the top 10 processes using the most memory"
@@ -74,7 +74,7 @@ df -h
 du -h ~/ --max-depth=1 | sort -hr | head -n 6
 ```
 
-## 🔍 Text Search
+## Text Search
 
 **Natural Language:**
 > "Find all Python files that import pandas"
@@ -94,7 +94,7 @@ grep -r "import pandas" --include="*.py"
 grep -rn "TODO" --include="*.js"
 ```
 
-## 📦 Compression & Archives
+## Compression & Archives
 
 **Natural Language:**
 > "Compress all video files larger than 500MB"
@@ -114,7 +114,7 @@ find . -type f \( -iname "*.mp4" -o -iname "*.avi" -o -iname "*.mkv" \) -size +5
 for file in *.zip; do unzip "$file" -d "${file%.zip}"; done
 ```
 
-## 🌐 Network Operations
+## Network Operations
 
 **Natural Language:**
 > "Check if google.com is reachable"
@@ -134,7 +134,7 @@ ping -c 4 google.com
 wget [URL]
 ```
 
-## 🗑️ Cleanup Operations
+## Cleanup Operations
 
 **Natural Language:**
 > "Delete all log files older than 30 days"
@@ -154,7 +154,7 @@ find /var/log -name "*.log" -type f -mtime +30 -delete
 find . -type d -empty -delete
 ```
 
-## 📝 Log Analysis
+## Log Analysis
 
 **Natural Language:**
 > "Show me the last 50 lines of the system log"
@@ -174,7 +174,7 @@ tail -n 50 /var/log/syslog
 grep -c "ERROR" /var/log/application.log
 ```
 
-## 🔐 Permissions & Ownership
+## Permissions & Ownership
 
 **Natural Language:**
 > "Make all shell scripts in this directory executable"
@@ -194,7 +194,7 @@ find . -name "*.sh" -type f -exec chmod +x {} \;
 sudo chown -R www-data:www-data /var/www
 ```
 
-## 🎨 Image/Video Processing
+## Image/Video Processing
 
 **Natural Language:**
 > "Convert all PNG images to JPEG"
@@ -214,7 +214,7 @@ for img in *.png; do convert "$img" "${img%.png}.jpg"; done
 ffmpeg -i input.mp4 -vcodec libx264 -crf 28 output.mp4
 ```
 
-## 📊 Data Processing
+## Data Processing
 
 **Natural Language:**
 > "Count the number of lines in all CSV files"
@@ -234,7 +234,7 @@ wc -l *.csv
 cut -d',' -f1 data.csv
 ```
 
-## 🔄 Batch Operations
+## Batch Operations
 
 **Natural Language:**
 > "Rename all .txt files to .md"
@@ -254,7 +254,7 @@ for file in *.txt; do mv "$file" "${file%.txt}.md"; done
 mkdir -p ~/config-backup && cp ~/.{bashrc,vimrc,zshrc,gitconfig} ~/config-backup/
 ```
 
-## 💡 Pro Tips
+## Pro Tips
 
 1. **Be specific**: The more details you provide, the better the command
 2. **Mention file types**: Specify extensions like .pdf, .jpg, .log
@@ -262,7 +262,7 @@ mkdir -p ~/config-backup && cp ~/.{bashrc,vimrc,zshrc,gitconfig} ~/config-backup
 4. **State the action**: Use verbs like find, move, delete, compress, list
 5. **Add constraints**: Mention size, date, or other filters
 
-## 🚨 Safety Reminders
+## Safety Reminders
 
 - Always review generated commands before executing
 - Commands marked as DANGEROUS require extra caution

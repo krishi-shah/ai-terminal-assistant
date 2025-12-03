@@ -354,25 +354,25 @@ def execute_command(command):
         )
         
         if result.stdout:
-            print_colored("\n📤 Output:", Colors.GREEN)
+            print_colored("\n Output:", Colors.GREEN)
             print(result.stdout)
         
         if result.stderr:
-            print_colored("\n⚠️  Errors/Warnings:", Colors.YELLOW)
+            print_colored("\n  Errors/Warnings:", Colors.YELLOW)
             print(result.stderr)
         
         if result.returncode == 0:
-            print_colored("\n✅ Command completed successfully", Colors.GREEN)
+            print_colored("\n Command completed successfully", Colors.GREEN)
         else:
-            print_colored(f"\n❌ Command failed with exit code {result.returncode}", Colors.RED)
+            print_colored(f"\n Command failed with exit code {result.returncode}", Colors.RED)
         
         return result.returncode == 0
     
     except subprocess.TimeoutExpired:
-        print_colored("\n⏱️  Command timed out (exceeded 5 minutes)", Colors.RED)
+        print_colored("\n  Command timed out (exceeded 5 minutes)", Colors.RED)
         return False
     except Exception as e:
-        print_colored(f"\n❌ Execution error: {str(e)}", Colors.RED)
+        print_colored(f"\n Execution error: {str(e)}", Colors.RED)
         return False
 
 def get_safety_color(level):
@@ -385,8 +385,8 @@ def get_safety_color(level):
 
 def process_request(client, ai_provider, user_input, auto_execute=False):
     """Process a user request and optionally execute it"""
-    print_colored(f"\n🤖 Processing: {user_input}", Colors.BLUE)
-    print_colored("⏳ Generating command...\n", Colors.CYAN)
+    print_colored(f"\n Processing: {user_input}", Colors.BLUE)
+    print_colored(" Generating command...\n", Colors.CYAN)
     
     result = generate_command(client, ai_provider, user_input)
     
@@ -402,11 +402,11 @@ def process_request(client, ai_provider, user_input, auto_execute=False):
     package_manager = get_package_manager()
     
     if missing_tools:
-        print_colored("⚠️  Missing Tools Detected!", Colors.YELLOW)
+        print_colored("  Missing Tools Detected!", Colors.YELLOW)
         print_colored("─" * 60, Colors.YELLOW)
         
         for tool in missing_tools:
-            print_colored(f"\n🔧 Tool '{tool}' is not installed", Colors.RED)
+            print_colored(f"\n Tool '{tool}' is not installed", Colors.RED)
             
             if package_manager:
                 install_cmd = get_install_command(tool, package_manager)
@@ -425,40 +425,40 @@ def process_request(client, ai_provider, user_input, auto_execute=False):
         choice = input().strip().lower()
         
         if choice == 'i' and package_manager:
-            print_colored("\n📦 Installing missing tools...\n", Colors.GREEN)
+            print_colored("\n Installing missing tools...\n", Colors.GREEN)
             for tool in missing_tools:
                 install_cmd = get_install_command(tool, package_manager)
                 print_colored(f"Running: {install_cmd}", Colors.CYAN)
                 os.system(install_cmd)
-            print_colored("\n✅ Installation complete!\n", Colors.GREEN)
+            print_colored("\n Installation complete!\n", Colors.GREEN)
         
         elif choice == 'a':
-            print_colored("\n🔄 Finding alternative command...\n", Colors.CYAN)
+            print_colored("\n Finding alternative command...\n", Colors.CYAN)
             alternative = suggest_alternatives(client, ai_provider, result['command'], missing_tools[0])
             if alternative:
                 print_colored("╔═══ Alternative Command ═══╗", Colors.CYAN)
                 print_colored(f"  {alternative['alternative_command']}", Colors.BOLD)
                 print_colored("╚═══════════════════════════╝\n", Colors.CYAN)
-                print_colored(f"📝 {alternative['explanation']}\n", Colors.BLUE)
+                print_colored(f" {alternative['explanation']}\n", Colors.BLUE)
                 
                 print_colored("Use this alternative? [y/N]: ", Colors.BOLD, end='')
                 if input().strip().lower() == 'y':
                     result['command'] = alternative['alternative_command']
                 else:
-                    print_colored("❌ Cancelled", Colors.YELLOW)
+                    print_colored(" Cancelled", Colors.YELLOW)
                     return False
             else:
-                print_colored("❌ Could not find alternative command", Colors.RED)
+                print_colored(" Could not find alternative command", Colors.RED)
                 return False
         
         elif choice == 'c':
-            print_colored("⚠️  Continuing anyway (command may fail)...\n", Colors.YELLOW)
+            print_colored("  Continuing anyway (command may fail)...\n", Colors.YELLOW)
         
         else:
-            print_colored("❌ Cancelled", Colors.YELLOW)
+            print_colored(" Cancelled", Colors.YELLOW)
             return False
     
-    print_colored("📝 Explanation:", Colors.BLUE)
+    print_colored(" Explanation:", Colors.BLUE)
     print(f"  {result['explanation']}\n")
     
     safety_symbol = {
@@ -471,45 +471,45 @@ def process_request(client, ai_provider, user_input, auto_execute=False):
     print_colored(f"{safety_symbol} Safety Level: {result['safety_level'].upper()}", safety_color)
     
     if result.get('warnings'):
-        print_colored("\n⚠️  Important Warnings:", Colors.YELLOW)
+        print_colored("\n  Important Warnings:", Colors.YELLOW)
         for warning in result['warnings']:
             print(f"  • {warning}")
     
     print()
     
     if auto_execute and result['safety_level'] == 'safe':
-        print_colored("🚀 Auto-executing (safe command)...\n", Colors.GREEN)
+        print_colored(" Auto-executing (safe command)...\n", Colors.GREEN)
         execute_command(result['command'])
     else:
         print_colored("Execute this command? [y/N/c(copy)/e(edit)]: ", Colors.BOLD, end='')
         choice = input().strip().lower()
         
         if choice == 'y':
-            print_colored("\n🚀 Executing...\n", Colors.GREEN)
+            print_colored("\n Executing...\n", Colors.GREEN)
             execute_command(result['command'])
         elif choice == 'c':
             try:
                 if os.system('which xclip > /dev/null 2>&1') == 0:
                     subprocess.run(['xclip', '-selection', 'clipboard'], 
                                  input=result['command'].encode(), check=True)
-                    print_colored("✅ Command copied to clipboard!", Colors.GREEN)
+                    print_colored(" Command copied to clipboard!", Colors.GREEN)
                 elif os.system('which pbcopy > /dev/null 2>&1') == 0:
                     subprocess.run(['pbcopy'], input=result['command'].encode(), check=True)
-                    print_colored("✅ Command copied to clipboard!", Colors.GREEN)
+                    print_colored(" Command copied to clipboard!", Colors.GREEN)
                 else:
-                    print_colored("⚠️  Clipboard utility not found. Command:", Colors.YELLOW)
+                    print_colored(" Clipboard utility not found. Command:", Colors.YELLOW)
                     print(result['command'])
             except Exception as e:
-                print_colored(f"⚠️  Could not copy to clipboard: {e}", Colors.YELLOW)
+                print_colored(f" Could not copy to clipboard: {e}", Colors.YELLOW)
                 print(f"Command: {result['command']}")
         elif choice == 'e':
             print_colored("Enter modified command: ", Colors.BOLD, end='')
             edited_command = input().strip()
             if edited_command:
-                print_colored("\n🚀 Executing edited command...\n", Colors.GREEN)
+                print_colored("\n Executing edited command...\n", Colors.GREEN)
                 execute_command(edited_command)
         else:
-            print_colored("❌ Execution cancelled", Colors.YELLOW)
+            print_colored(" Execution cancelled", Colors.YELLOW)
     
     return True
 
@@ -522,15 +522,15 @@ def interactive_mode(client, ai_provider):
     
     # Display AI provider
     ai_name = "Claude (Anthropic)" if ai_provider == 'anthropic' else "GPT-4 (OpenAI)"
-    print_colored(f"🤖 AI Provider: {ai_name}", Colors.CYAN)
-    print_colored(f"🖥️  Detected OS: {os_name}", Colors.CYAN)
+    print_colored(f" AI Provider: {ai_name}", Colors.CYAN)
+    print_colored(f"  Detected OS: {os_name}", Colors.CYAN)
     if package_manager:
-        print_colored(f"📦 Package Manager: {package_manager}", Colors.CYAN)
+        print_colored(f" Package Manager: {package_manager}", Colors.CYAN)
     else:
-        print_colored("⚠️  No package manager detected", Colors.YELLOW)
+        print_colored("  No package manager detected", Colors.YELLOW)
     
-    print_colored("\n💡 Type your commands in plain English (or 'quit' to exit)", Colors.CYAN)
-    print_colored("💡 Press Ctrl+C to cancel at any time\n", Colors.CYAN)
+    print_colored("\n Type your commands in plain English (or 'quit' to exit)", Colors.CYAN)
+    print_colored(" Press Ctrl+C to cancel at any time\n", Colors.CYAN)
     
     while True:
         try:
@@ -541,16 +541,16 @@ def interactive_mode(client, ai_provider):
                 continue
             
             if user_input.lower() in ['quit', 'exit', 'q']:
-                print_colored("\n👋 Goodbye!", Colors.CYAN)
+                print_colored("\n Goodbye!", Colors.CYAN)
                 break
             
             process_request(client, ai_provider, user_input)
             
         except KeyboardInterrupt:
-            print_colored("\n\n👋 Goodbye!", Colors.CYAN)
+            print_colored("\n\n Goodbye!", Colors.CYAN)
             break
         except Exception as e:
-            print_colored(f"\n❌ Error: {str(e)}", Colors.RED)
+            print_colored(f"\n Error: {str(e)}", Colors.RED)
 
 def main():
     """Main entry point"""
@@ -570,7 +570,7 @@ def main():
         ai_provider = 'openai'
     else:
         # No valid API key found
-        print_colored("❌ Error: No API key found", Colors.RED)
+        print_colored(" Error: No API key found", Colors.RED)
         print_colored("\nPlease set one of the following:", Colors.YELLOW)
         
         if not anthropic_key:
@@ -583,12 +583,12 @@ def main():
         
         # Check if libraries are missing
         if not ANTHROPIC_AVAILABLE and not OPENAI_AVAILABLE:
-            print_colored("\n⚠️  Missing required libraries!", Colors.RED)
+            print_colored("\n  Missing required libraries!", Colors.RED)
             print_colored("Install with: pip install anthropic openai", Colors.YELLOW)
         elif not ANTHROPIC_AVAILABLE:
-            print_colored("\n💡 Install Anthropic library: pip install anthropic", Colors.YELLOW)
+            print_colored("\n Install Anthropic library: pip install anthropic", Colors.YELLOW)
         elif not OPENAI_AVAILABLE:
-            print_colored("\n💡 Install OpenAI library: pip install openai", Colors.YELLOW)
+            print_colored("\n Install OpenAI library: pip install openai", Colors.YELLOW)
         
         sys.exit(1)
     

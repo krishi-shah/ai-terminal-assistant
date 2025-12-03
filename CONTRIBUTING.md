@@ -101,4 +101,4 @@ Current priority areas for contributions:
 
 Feel free to open an issue with the `question` label!
 
-Thank you for contributing! 🚀
+Thank you for contributing! 

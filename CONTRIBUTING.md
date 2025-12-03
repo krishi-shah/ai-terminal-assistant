@@ -2,7 +2,7 @@
 
 First off, thank you for considering contributing to AI Terminal Assistant! 🎉
 
-## 🤝 How Can I Contribute?
+## How Can I Contribute?
 
 ### Reporting Bugs
 
@@ -33,7 +33,7 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
 6. Push to the branch (`git push origin feature/amazing-feature`)
 7. Open a Pull Request
 
-## 🎨 Development Setup
+## Development Setup
 
 ```bash
 # Clone your fork
@@ -50,7 +50,7 @@ export ANTHROPIC_API_KEY='your-key'
 ./ai-terminal.py
 ```
 
-## 📝 Code Style
+## Code Style
 
 - Follow PEP 8 guidelines
 - Use meaningful variable names
@@ -58,7 +58,7 @@ export ANTHROPIC_API_KEY='your-key'
 - Keep functions focused and small
 - Write docstrings for functions
 
-## 🧪 Testing
+## Testing
 
 Before submitting:
 
@@ -68,7 +68,7 @@ Before submitting:
 - Test error handling
 - Test on different OS (if possible)
 
-## 💡 Ideas for Contributions
+## Ideas for Contributions
 
 - Add support for more shells (fish, PowerShell)
 - Implement command history database
@@ -80,14 +80,14 @@ Before submitting:
 - Create video tutorials
 - Add internationalization
 
-## 📜 Code of Conduct
+## Code of Conduct
 
 - Be respectful and inclusive
 - Accept constructive criticism
 - Focus on what's best for the community
 - Show empathy towards others
 
-## 🎯 Priority Areas
+## Priority Areas
 
 Current priority areas for contributions:
 
@@ -97,7 +97,7 @@ Current priority areas for contributions:
 4. **Platform Support**: Windows PowerShell, macOS specific features
 5. **Performance**: Optimization for large outputs
 
-## 📞 Questions?
+## Questions?
 
 Feel free to open an issue with the `question` label!
 
